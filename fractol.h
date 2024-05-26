@@ -6,7 +6,7 @@
 /*   By: ffidha <ffidha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:09:11 by ffidha            #+#    #+#             */
-/*   Updated: 2024/05/25 20:29:25 by ffidha           ###   ########.fr       */
+/*   Updated: 2024/05/26 19:48:35 by ffidha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,26 @@
 #include <math.h> //math functions
 
 // size of the window
-#define WIDTH 1920
-#define HEIGHT 1080
+#define WIDTH 800
+#define HEIGHT 800
 
 // colors
-#define BLACK  0x000000
-#define WHITE  0xFFFFFF
-#define RED     0xFF0000
-#define GREEN   0x00FF00
-#define YELLOW  0xFFFF00
-#define BLUE    0x0000FF
-#define MAGENTA 0xFF00FF
-#define CYAN    0x00FFFF
-#define LIGHT_RED   0xFFA500
-#define LIGHT_YELLOW  0xFFFFE0
-#define LIGHT_BLUE  0xADD8E6
-#define LIGHT_MAGENTA 0xFFE4E1
-#define LIGHT_CYAN  0xAFEEEE
+#define BLACK       0x000000  // RGB(0, 0, 0)
+#define WHITE       0xFFFFFF  // RGB(255, 255, 255)
+#define RED         0xFF0000  // RGB(255, 0, 0)
+#define GREEN       0x00FF00  // RGB(0, 255, 0)
+#define BLUE        0x0000FF  // RGB(0, 0, 255)
+
+// Psychedelic colors
+#define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
+#define LIME_SHOCK      0xCCFF00  // A blinding lime
+#define NEON_ORANGE     0xFF6600  // A blazing neon orange
+#define PSYCHEDELIC_PURPLE 0x660066  // A deep purple
+#define AQUA_DREAM      0x33CCCC  // A bright turquoise
+#define HOT_PINK        0xFF66B2  // As the name suggests!
+#define ELECTRIC_BLUE   0x0066FF  // A radiant blue
+#define LAVA_RED        0xFF3300  // A bright, molten red
+
 
 
 //complex numbers struct
@@ -73,6 +76,11 @@ typedef struct	s_fractal
 	// hooks
 	double		hypotenuse;
 	int			iterations; // effects the image quality and speed
+	double		shift_x;
+	double		shift_y;
+	double		zoom;
+	double		julia_i;
+	double		julia_real;
 }			t_fractal;
 
 //Error functions
@@ -81,8 +89,8 @@ int				escape(char *reason);
 
 //inits
 void			fract_init(t_fractal *fractal);
-void			fract_render(t_fractal *fractal);
 void			data_init(t_fractal *fractal);
+void			fract_render(t_fractal *fractal);
 
 // math functions
 double			scale(double unscaled_num, double new_min,
@@ -93,5 +101,10 @@ t_complex		square(t_complex z);
 // utils
 void	ft_putendl_fd(char *s, int fd);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
+double	atodbl(char *s);
+
+// movements/events
+int	key_handler(int keycode, t_fractal *fractal);
+int	close_handler(t_fractal *fractal);
 
 #endif

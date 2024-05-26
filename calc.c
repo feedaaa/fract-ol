@@ -6,7 +6,7 @@
 /*   By: ffidha <ffidha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:38:34 by ffidha            #+#    #+#             */
-/*   Updated: 2024/05/25 15:23:37 by ffidha           ###   ########.fr       */
+/*   Updated: 2024/05/26 16:36:53 by ffidha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_complex	sum(t_complex z1, t_complex z2)
 {
 	t_complex	result;
 
-	result.real = z1.real + z2.i;
+	result.real = z1.real + z2.real;
 	result.i = z1.i + z2.i;
 	return (result);
 }

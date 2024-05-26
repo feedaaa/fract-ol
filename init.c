@@ -6,7 +6,7 @@
 /*   By: ffidha <ffidha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 11:55:08 by ffidha            #+#    #+#             */
-/*   Updated: 2024/05/25 18:35:16 by ffidha           ###   ########.fr       */
+/*   Updated: 2024/05/26 20:03:49 by ffidha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@ void	data_init(t_fractal *fractal)
 	// 2^2
 	fractal->hypotenuse = 4;
 	fractal->iterations = 42;
+	fractal->shift_x = 0.0;
+	fractal->shift_y = 0.0;
+	fractal->zoom = 1.0;
+}
+
+static void	events_init(t_fractal *fractal)
+{
+	mlx_hook(fractal->mlx_win, 2, 0, key_handler, fractal);
+	// mlx_hook(fractal->mlx_win, 4, 0, mouse_handler, fractal);
+	mlx_hook(fractal->mlx_win, 17, 0, close_handler, fractal);
 }
 
 void	fract_init(t_fractal *fractal)
@@ -30,18 +40,18 @@ void	fract_init(t_fractal *fractal)
 	{
 		mlx_destroy_window(fractal->mlx, fractal->mlx_win);
 		free(fractal->mlx);
-		death("allocation probs");
+		death("WINDOW DESTROYED");
 	}
 	fractal->img.img_ptr = mlx_new_image(fractal->mlx, WIDTH, HEIGHT);
-	if (fractal->img.img_ptr)
+	if (!fractal->img.img_ptr)
 	{
 		mlx_destroy_image(fractal->mlx, fractal->img. img_ptr);
 		mlx_destroy_window(fractal->mlx, fractal->mlx_win);
 		free(fractal->mlx);
-		death("allocation probs");
+		death("IMAGE DESTROYED");
 	}
 	fractal->img. pixel_ptr = mlx_get_data_addr(fractal->img.img_ptr, &fractal->img.bits_per_pixel,
 		&fractal->img.line_length, &fractal->img.endian);
-	//events_init(fractal);
+	events_init(fractal);
 	data_init(fractal);
 }

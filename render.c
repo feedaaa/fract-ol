@@ -6,7 +6,7 @@
 /*   By: ffidha <ffidha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 13:37:24 by ffidha            #+#    #+#             */
-/*   Updated: 2024/05/25 18:31:41 by ffidha           ###   ########.fr       */
+/*   Updated: 2024/05/26 20:02:50 by ffidha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,23 @@ static void		put_pixel(int x, int y, t_img *img, int color)
 {
 	int		offset;
 	
-	offset = (y * img->line_length) + (x * img->bits_per_pixel / 8);
+	offset = (y * img->line_length) + (x * (img->bits_per_pixel / 8));
 	*(unsigned int *)(img->pixel_ptr + offset) = color;
 }
+
+// static void	mandel_vs_julia(t_complex *z, t_complex *c, t_fractal *fractal)
+// {	
+// 	if (!ft_strncmp(fractal->name, "julia", 5))
+// 	{
+// 		c->real = fractal->julia_real;
+// 		c->i = fractal->julia_i;
+// 	}
+// 	else
+// 	{
+// 		c->real = z->real;
+// 		c->i = z->i;
+// 	}
+// }
 
 static void		handle_pixel(int x, int y, t_fractal *fractal)
 {
@@ -32,8 +46,8 @@ static void		handle_pixel(int x, int y, t_fractal *fractal)
 	z.real = 0.0;
 	z.i = 0.0;
 	
-	c.real = scale(x, -2, +2, WIDTH);
-	c.i = scale(y, +2, -2, HEIGHT);
+	c.real = (scale(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
+	c.i = (scale(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
 
 	while (i < fractal->iterations)
 	{
@@ -42,11 +56,10 @@ static void		handle_pixel(int x, int y, t_fractal *fractal)
 		{
 			color = scale(i, BLACK, WHITE, fractal->iterations);
 			put_pixel(x, y, &fractal->img, color);
-			return ;
 		}
 		++i;
 	}
-	put_pixel(x, y, &fractal->img, LIGHT_BLUE);	
+	put_pixel(x, y, &fractal->img, PSYCHEDELIC_PURPLE);	
 }
 
 void		fract_render(t_fractal *fractal)
@@ -64,5 +77,5 @@ void		fract_render(t_fractal *fractal)
 		}
 	}
 	mlx_put_image_to_window(fractal->mlx, fractal->mlx_win,
-			fractal->img. img_ptr, x, y);
-} 
+			fractal->img.img_ptr, 0, 0);
+}
