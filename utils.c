@@ -45,28 +45,57 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 double	atof(char *s)
 {
-	long	integer_part;
-	double	fractional_part;
+	long	int_pt;
+	double	fract_pt;
 	double	pow;
 	int		sign;
 
-	integer_part = 0;
-	fractional_part = 0;
+	int_pt = 0;
+	fract_pt = 0;
 	sign = +1;
 	pow = 1;
-	while ((*s >= 9 && *s <= 13) || 32 == *s)
-		++s;
-	while ('+' == *s || '-' == *s)
+	while ((*s >= 9 && *s <= 13) || *s == 32)
+		s++;
+	while (*s == '+' || *s == '-')
 		if ('-' == *s++)
 			sign = -sign;
 	while (*s != '.' && *s)
-		integer_part = (integer_part * 10) + (*s++ - 48);
+		int_pt = (int_pt * 10) + (*s++ - 48);
 	if ('.' == *s)
 		++s;
 	while (*s)
 	{
 		pow /= 10;
-		fractional_part = fractional_part + (*s++ - 48) * pow;
+		fract_pt = fract_pt + (*s++ - 48) * pow;
 	}
-	return ((integer_part + fractional_part) * sign);
+	return ((int_pt + fract_pt) * sign);
+}
+
+int	is_valid_julia_parameter(const char *param)
+{
+	int	decimal_point_count;
+	int	length;
+	int	valid;
+	int	i;
+
+	decimal_point_count = 0;
+	length = (int)strlen(param);
+	valid = 1;
+	i = 0;
+	while (i < length)
+	{
+		if (param[i] == '.')
+		{
+			decimal_point_count++;
+		}
+		else if (!isdigit(param[i]) && (param[i] != '-' || i != 0))
+		{
+			valid = 0;
+			break ;
+		}
+		i++;
+	}
+	if (decimal_point_count > 1)
+		valid = 0;
+	return (valid);
 }

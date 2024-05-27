@@ -43,11 +43,10 @@ static void		handle_pixel(int x, int y, t_fractal *fractal)
 	int				color;
 
 	i = 0;
-	z.real = 0.0;
-	z.i = 0.0;
+	z.real = (scale(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
+	z.i = (scale(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
 
-	c.real = (scale(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
-	c.i = (scale(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
+	mandel_vs_julia(&z, &c, fractal);
 
 	while (i < fractal->iterations)
 	{

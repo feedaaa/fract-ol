@@ -25,6 +25,19 @@ int		escape(char *reason)
 	exit(EXIT_SUCCESS);
 }
 
+int	julia_params(t_fractal *fractal, char **av)
+{
+	if (av[2] == NULL || av[3] == NULL)
+		death("julia needs her params pls :)");
+	if (!julia_param_check(av[2]) || !julia_param_check(av[3]))
+		death("those params is a no no");
+	fractal->julia_real = atof(av[2]);
+	fractal->julia_i = atof(av[3]);
+	if (fractal->julia_real < -2 || fractal->julia_real > 2
+		|| fractal->julia_i < -2 || fractal->julia_i > 2)
+		death("params should be between -2 and +2");
+	return(1);
+}
 int		main (int ac, char **av)
 {
 	t_fractal		fractal;
@@ -35,6 +48,10 @@ int		main (int ac, char **av)
 		fractal.name = av[1];
 		if (!ft_strncmp(fractal.name, "julia", 5))
 		{
+			if (!check_julia_parameters(&fractal, av))
+			{
+				death("julia erse tu?");
+			}
 			fractal.julia_real = atof(av[2]);
 			fractal.julia_i = atof(av[3]);
 		}

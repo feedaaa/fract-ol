@@ -102,10 +102,11 @@ t_complex		square(t_complex z);
 void			ft_putendl_fd(char *s, int fd);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 double			atof(char *s);
+int				is_valid_julia_parameter(const char *param);
 
 // movements/events
 int				key_handler(int keycode, t_fractal *fractal);
 int				close_handler(t_fractal *fractal);
 int				mouse_handler(int button, int x, int y, t_fractal *fractal);
-
+int				julia_track(int x, int y, t_fractal *fractal);
 #endif
