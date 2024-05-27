@@ -6,7 +6,7 @@
 /*   By: ffidha <ffidha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:46:51 by ffidha            #+#    #+#             */
-/*   Updated: 2024/05/26 16:07:21 by ffidha           ###   ########.fr       */
+/*   Updated: 2024/05/27 17:54:48 by ffidha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,30 +43,30 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-// double	atodbl(char *s)
-// {
-// 	long	integer_part;
-// 	double	fractional_part;
-// 	double	pow;
-// 	int		sign;
+double	atof(char *s)
+{
+	long	integer_part;
+	double	fractional_part;
+	double	pow;
+	int		sign;
 
-// 	integer_part = 0;
-// 	fractional_part = 0;
-// 	sign = +1;
-// 	pow = 1;
-// 	while ((*s >= 9 && *s <= 13) || 32 == *s)
-// 		++s;
-// 	while ('+' == *s || '-' == *s)
-// 		if ('-' == *s++)
-// 			sign = -sign;
-// 	while (*s != '.' && *s)
-// 		integer_part = (integer_part * 10) + (*s++ - 48);
-// 	if ('.' == *s)
-// 		++s;
-// 	while (*s)
-// 	{
-// 		pow /= 10;
-// 		fractional_part = fractional_part + (*s++ - 48) * pow;
-// 	}
-// 	return ((integer_part + fractional_part) * sign);
-// }
+	integer_part = 0;
+	fractional_part = 0;
+	sign = +1;
+	pow = 1;
+	while ((*s >= 9 && *s <= 13) || 32 == *s)
+		++s;
+	while ('+' == *s || '-' == *s)
+		if ('-' == *s++)
+			sign = -sign;
+	while (*s != '.' && *s)
+		integer_part = (integer_part * 10) + (*s++ - 48);
+	if ('.' == *s)
+		++s;
+	while (*s)
+	{
+		pow /= 10;
+		fractional_part = fractional_part + (*s++ - 48) * pow;
+	}
+	return ((integer_part + fractional_part) * sign);
+}

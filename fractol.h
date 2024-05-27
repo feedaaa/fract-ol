@@ -6,7 +6,7 @@
 /*   By: ffidha <ffidha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:09:11 by ffidha            #+#    #+#             */
-/*   Updated: 2024/05/26 19:48:35 by ffidha           ###   ########.fr       */
+/*   Updated: 2024/05/27 17:55:54 by ffidha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,13 @@ t_complex		sum(t_complex z1, t_complex z2);
 t_complex		square(t_complex z);
 
 // utils
-void	ft_putendl_fd(char *s, int fd);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
-double	atodbl(char *s);
+void			ft_putendl_fd(char *s, int fd);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+double			atof(char *s);
 
 // movements/events
-int	key_handler(int keycode, t_fractal *fractal);
-int	close_handler(t_fractal *fractal);
+int				key_handler(int keycode, t_fractal *fractal);
+int				close_handler(t_fractal *fractal);
+int				mouse_handler(int button, int x, int y, t_fractal *fractal);
 
 #endif

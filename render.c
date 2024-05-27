@@ -6,7 +6,7 @@
 /*   By: ffidha <ffidha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 13:37:24 by ffidha            #+#    #+#             */
-/*   Updated: 2024/05/26 20:02:50 by ffidha           ###   ########.fr       */
+/*   Updated: 2024/05/27 17:53:40 by ffidha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ static void		put_pixel(int x, int y, t_img *img, int color)
 	*(unsigned int *)(img->pixel_ptr + offset) = color;
 }
 
-// static void	mandel_vs_julia(t_complex *z, t_complex *c, t_fractal *fractal)
-// {	
-// 	if (!ft_strncmp(fractal->name, "julia", 5))
-// 	{
-// 		c->real = fractal->julia_real;
-// 		c->i = fractal->julia_i;
-// 	}
-// 	else
-// 	{
-// 		c->real = z->real;
-// 		c->i = z->i;
-// 	}
-// }
+static void	mandel_vs_julia(t_complex *z, t_complex *c, t_fractal *fractal)
+{	
+	if (!ft_strncmp(fractal->name, "julia", 5))
+	{
+		c->real = fractal->julia_real;
+		c->i = fractal->julia_i;
+	}
+	else
+	{
+		c->real = z->real;
+		c->i = z->i;
+	}
+}
 
 static void		handle_pixel(int x, int y, t_fractal *fractal)
 {
@@ -45,7 +45,7 @@ static void		handle_pixel(int x, int y, t_fractal *fractal)
 	i = 0;
 	z.real = 0.0;
 	z.i = 0.0;
-	
+
 	c.real = (scale(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
 	c.i = (scale(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
 
@@ -56,12 +56,12 @@ static void		handle_pixel(int x, int y, t_fractal *fractal)
 		{
 			color = scale(i, BLACK, WHITE, fractal->iterations);
 			put_pixel(x, y, &fractal->img, color);
+			return ;
 		}
 		++i;
 	}
-	put_pixel(x, y, &fractal->img, PSYCHEDELIC_PURPLE);	
+	put_pixel(x, y, &fractal->img, LIME_SHOCK);	
 }
-
 void		fract_render(t_fractal *fractal)
 {
 	int		x;

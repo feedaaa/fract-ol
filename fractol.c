@@ -6,7 +6,7 @@
 /*   By: ffidha <ffidha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:53:18 by ffidha            #+#    #+#             */
-/*   Updated: 2024/05/26 16:42:12 by ffidha           ###   ########.fr       */
+/*   Updated: 2024/05/27 17:54:36 by ffidha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int		main (int ac, char **av)
 			|| (ac == 4 && !ft_strncmp(av[1], "julia", 5)))
 	{
 		fractal.name = av[1];
-		// if (!ft_strncmp(fractal.name, "julia", 5))
-		// {
-		// 	fractal.julia_x = atodbl(av[2]);
-		// 	fractal.julia_y = atodbl(av[3]);
-		// }
+		if (!ft_strncmp(fractal.name, "julia", 5))
+		{
+			fractal.julia_real = atof(av[2]);
+			fractal.julia_i = atof(av[3]);
+		}
 		fract_init(&fractal);
 		fract_render(&fractal);
 		mlx_loop(fractal.mlx);

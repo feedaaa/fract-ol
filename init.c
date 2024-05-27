@@ -6,7 +6,7 @@
 /*   By: ffidha <ffidha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 11:55:08 by ffidha            #+#    #+#             */
-/*   Updated: 2024/05/26 20:03:49 by ffidha           ###   ########.fr       */
+/*   Updated: 2024/05/27 17:31:55 by ffidha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	data_init(t_fractal *fractal)
 static void	events_init(t_fractal *fractal)
 {
 	mlx_hook(fractal->mlx_win, 2, 0, key_handler, fractal);
-	// mlx_hook(fractal->mlx_win, 4, 0, mouse_handler, fractal);
+	mlx_hook(fractal->mlx_win, 4, 0, mouse_handler, fractal);
 	mlx_hook(fractal->mlx_win, 17, 0, close_handler, fractal);
 }
 
