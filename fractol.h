@@ -6,7 +6,7 @@
 /*   By: ffidha <ffidha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:09:11 by ffidha            #+#    #+#             */
-/*   Updated: 2024/05/27 17:55:54 by ffidha           ###   ########.fr       */
+/*   Updated: 2024/05/28 19:08:06 by ffidha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include <stdio.h> //debugging
 #include "mlx/mlx.h" //minilibx
 #include <math.h> //math functions
+#include <string.h>
+#include <ctype.h>
 
 // size of the window
 #define WIDTH 800
@@ -101,8 +103,10 @@ t_complex		square(t_complex z);
 // utils
 void			ft_putendl_fd(char *s, int fd);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
-double			atof(char *s);
-int				is_valid_julia_parameter(const char *param);
+double			atobbl(char *s);
+int				julia_param_check(const char *param);
+
+
 
 // movements/events
 int				key_handler(int keycode, t_fractal *fractal);

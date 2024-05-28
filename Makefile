@@ -1,7 +1,4 @@
-NAME	=	fractol
-CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror
-RM		=	rm	-rf
+NAME = fractol
 
 SRCS        :=      calc.c \
                           fractol.c \
@@ -10,20 +7,21 @@ SRCS        :=      calc.c \
                           utils.c \
 						  events.c
 
-%.o: %.c
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+CFLAGS = -Wall -Werror -Wextra
 
-$(NAME): $(SRCS)
-	$(MAKE) all -C mlx
-	$(CC) $(CFLAGS) $(SRCS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+CC = cc
+
+OBJ = $(SRCS:.c=.o)
+
+all: $(NAME) 
+
+$(NAME): $(OBJ) 
+		$(CC) $(CFLAGS) -I./mlx -L./mlx -lmlx  -framework OpenGL -framework AppKit -o $(NAME) $(OBJ)
 
 clean:
-	$(MAKE) clean -C mlx
+	rm -f $(OBJ)
 
-fclean: clean
-	$(RM) $(NAME)
-	$(MAKE) clean -C mlx
+fclean: clean 
+	rm -f $(NAME)
 
-re: fclean $(NAME)
-
-.PHONY = all clean fclean re
+re: fclean all

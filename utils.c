@@ -6,7 +6,7 @@
 /*   By: ffidha <ffidha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:46:51 by ffidha            #+#    #+#             */
-/*   Updated: 2024/05/27 17:54:48 by ffidha           ###   ########.fr       */
+/*   Updated: 2024/05/28 19:07:54 by ffidha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-double	atof(char *s)
+double	atobbl(char *s)
 {
 	long	int_pt;
 	double	fract_pt;
@@ -70,8 +70,7 @@ double	atof(char *s)
 	}
 	return ((int_pt + fract_pt) * sign);
 }
-
-int	is_valid_julia_parameter(const char *param)
+int	julia_param_check(const char *param)
 {
 	int	decimal_point_count;
 	int	length;

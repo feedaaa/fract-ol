@@ -6,7 +6,7 @@
 /*   By: ffidha <ffidha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:34:06 by ffidha            #+#    #+#             */
-/*   Updated: 2024/05/27 17:39:13 by ffidha           ###   ########.fr       */
+/*   Updated: 2024/05/28 19:10:46 by ffidha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	close_handler(t_fractal *fractal)
 	mlx_destroy_image(fractal->mlx, fractal->img.img_ptr);
 	mlx_destroy_window(fractal->mlx, fractal->mlx_win);
 	free(fractal->mlx);
-	escape("cute exit");
+	exit(EXIT_SUCCESS);
 }
 int	key_handler(int keycode, t_fractal *fractal)
 {
@@ -56,11 +56,11 @@ int	julia_track(int x, int y, t_fractal *fractal)
 {
 	if (!ft_strncmp(fractal->name, "julia", 5))
 	{
-		fractal->julia_x = (map(x, -2, +2, WIDTH) * fractal->zoom)
+		fractal->julia_real = (scale(x, -2, +2, WIDTH) * fractal->zoom)
 			+ fractal->shift_x;
-		fractal->julia_y = (map(y, +2, -2, HEIGHT) * fractal->zoom)
+		fractal->julia_i = (scale(y, +2, -2, HEIGHT) * fractal->zoom)
 			+ fractal->shift_y;
-		fractal_render(fractal);
+		fract_render(fractal);
 	}
 	return (0);
 }
