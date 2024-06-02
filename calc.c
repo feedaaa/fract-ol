@@ -6,23 +6,19 @@
 /*   By: ffidha <ffidha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:38:34 by ffidha            #+#    #+#             */
-/*   Updated: 2024/05/26 16:36:53 by ffidha           ###   ########.fr       */
+/*   Updated: 2024/05/28 19:41:52 by ffidha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// scales values [0-1080] into [-2 - 2]
-
-double	scale(double unscaled_num, double new_min,
-		double new_max, double old_max)
+double	scale(double unscaled_num, double new_min, double new_max,
+		double old_max)
 {
-	return ((new_max - new_min) * (unscaled_num - 0)
-		/ (old_max - 0) + new_min);
+	return ((new_max - new_min) * (unscaled_num - 0) / (old_max - 0) + new_min);
 }
 
 t_complex	sum(t_complex z1, t_complex z2)
-
 {
 	t_complex	result;
 
@@ -37,6 +33,5 @@ t_complex	square(t_complex z)
 
 	result.real = (z.real * z.real) - (z.i * z.i);
 	result.i = 2 * z.real * z.i;
-	return (result); 
+	return (result);
 }
-

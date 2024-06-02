@@ -5,7 +5,7 @@ SRCS        :=      calc.c \
                           init.c \
                           render.c \
                           utils.c \
-						  events.c
+						  hooks.c
 
 CFLAGS = -Wall -Werror -Wextra
 
